@@ -302,8 +302,8 @@ const themeNameAlreadyExists = (name) => {
  * Main function.
  */
 export const run = async (prNumber) => {
+  const dryRun = process.env.DRY_RUN === "true" || false;
   try {
-    const dryRun = process.env.DRY_RUN === "true" || false;
     debug("Retrieve action information from context...");
     debug(`Context: ${inspect(github.context)}`);
     let commentBody = `
@@ -430,7 +430,7 @@ export const run = async (prNumber) => {
           \r### ${
             themeName.charAt(0).toUpperCase() + themeName.slice(1)
           } theme preview
-          
+
           \r${warnings.map((warning) => `- :warning: ${warning}.\n`).join("")}
           \r${errors.map((error) => `- :x: ${error}.\n`).join("")}
 
@@ -472,7 +472,7 @@ export const run = async (prNumber) => {
         \r### ${
           themeName.charAt(0).toUpperCase() + themeName.slice(1)
         } theme preview
-        
+
         \r${warnings.map((warning) => `- :warning: ${warning}.\n`).join("")}
 
         \ntitle_color: <code>#${titleColor}</code> | icon_color: <code>#${iconColor}</code> | text_color: <code>#${textColor}</code> | bg_color: <code>#${bgColor}</code>${
@@ -505,7 +505,7 @@ export const run = async (prNumber) => {
           ? "**Result:** :heavy_check_mark: All themes are valid."
           : "**Result:** :x: Some themes are invalid.\n\n" + FAIL_TEXT
       }
-      
+
       \r## Details
       \r${previewBody}
     `;
