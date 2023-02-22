@@ -302,7 +302,7 @@ const themeNameAlreadyExists = (name) => {
  * Main function.
  */
 export const run = async (prNumber) => {
-  const dryRun = process.env.DRY_RUN ? process_env.DRY_RUN : false;
+  const dryRun = process.env.DRY_RUN ? process.env.DRY_RUN : false;
   try {
     debug("Retrieve action information from context...");
     debug(`Context: ${inspect(github.context)}`);
