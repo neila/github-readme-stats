@@ -11,8 +11,6 @@ jobs:
   previewTheme:
     name: Install & Preview
     runs-on: ubuntu-latest
-    env:
-      DRY_RUN: "true"
     strategy:
       matrix:
         node-version: [16.x]
@@ -33,3 +31,4 @@ jobs:
       - run: npm run preview-theme
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DRY_RUN: true
